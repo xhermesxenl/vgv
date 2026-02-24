@@ -26,7 +26,7 @@ dependencies:
     path: packages/local_storage_client
   permission_client:
     path: packages/permission_client
-  shared_preferences: ^2.3.5
+  shared_preferences: ^2.5.4
   supabase_auth_client:
     path: packages/supabase_auth_client
   supabase_flutter: ^2.12.0
