@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:connectivity_client/connectivity_client.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:local_storage_client/local_storage_client.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -22,7 +24,13 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap(
+  FutureOr<Widget> Function({
+    required SecureStorageClient secureStorageClient,
+    required PreferencesClient preferencesClient,
+    required ConnectivityClient connectivityClient,
+  }) builder,
+) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
@@ -36,5 +44,15 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
-  runApp(await builder());
+  const secureStorageClient = SecureStorageClient();
+  final preferencesClient = await PreferencesClient.create();
+  final connectivityClient = ConnectivityClient();
+
+  runApp(
+    await builder(
+      secureStorageClient: secureStorageClient,
+      preferencesClient: preferencesClient,
+      connectivityClient: connectivityClient,
+    ),
+  );
 }
