@@ -8,14 +8,14 @@ environment:
   flutter: ">=3.32.0"
 
 dependencies:
-  bloc: ^8.1.4
+  bloc: ^9.2.0
   connectivity_client:
     path: packages/connectivity_client
   connectivity_plus: ^6.1.0
   equatable: ^2.0.7
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.1.1
   flutter_dotenv: ^6.0.0
   flutter_localizations:
     sdk: flutter
@@ -32,7 +32,7 @@ dependencies:
   supabase_flutter: ^2.12.0
 
 dev_dependencies:
-  bloc_test: ^9.1.7
+  bloc_test: ^10.0.0
   flutter_test:
     sdk: flutter
   integration_test:
