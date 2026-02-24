@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vgv/auth/auth.dart';
 import 'package:vgv/l10n/l10n.dart';
 import 'package:vgv/users/view/users_page.dart';
 
@@ -11,6 +13,15 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.counterAppBarTitle),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Sign Out',
+            onPressed: () {
+              context.read<AuthBloc>().add(const AuthSignOutRequested());
+            },
+          ),
+        ],
       ),
       body: Center(
         child: ElevatedButton(
