@@ -1,3 +1,7 @@
+# Local build/test logs
+android/build_error.txt
+test_logs.txt
+
 # Miscellaneous
 *.class
 *.log
