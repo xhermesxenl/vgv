@@ -3,8 +3,35 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vgv/auth/cubit/login_cubit.dart';
 import 'package:vgv/auth/cubit/login_state.dart';
 
-class AuthForm extends StatelessWidget {
+class AuthForm extends StatefulWidget {
   const AuthForm({super.key});
+
+  @override
+  State<AuthForm> createState() => _AuthFormState();
+}
+
+class _AuthFormState extends State<AuthForm> {
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController(text: 'a@a.fr');
+    _passwordController = TextEditingController(text: '1234');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<LoginCubit>()
+        ..emailChanged('a@a.fr')
+        ..passwordChanged('1234');
+    });
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +60,11 @@ class AuthForm extends StatelessWidget {
           ),
           const SizedBox(height: 40),
           TextField(
-            decoration: const InputDecoration(
+            controller: _emailController,
+            decoration: InputDecoration(
               labelText: 'Email',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
+              errorText: state.emailError,
             ),
             keyboardType: TextInputType.emailAddress,
             onChanged: cubit.emailChanged,
@@ -43,9 +72,11 @@ class AuthForm extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           TextField(
-            decoration: const InputDecoration(
+            controller: _passwordController,
+            decoration: InputDecoration(
               labelText: 'Password',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
+              errorText: state.passwordError,
             ),
             obscureText: true,
             onChanged: cubit.passwordChanged,

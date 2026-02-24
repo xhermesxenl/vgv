@@ -2,8 +2,9 @@ import 'package:equatable/equatable.dart';
 
 /// Base class for all domain failures.
 ///
+/// Implements [Exception] so failures can be thrown and caught idiomatically.
 /// Use sealed subclasses to represent specific failure categories.
-sealed class Failure extends Equatable {
+sealed class Failure extends Equatable implements Exception {
   const Failure({required this.message});
 
   /// Human-readable description of the failure.

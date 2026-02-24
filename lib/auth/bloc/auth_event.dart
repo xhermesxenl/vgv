@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
+import 'package:supabase_auth_client/supabase_auth_client.dart';
 
 sealed class AuthEvent extends Equatable {
   const AuthEvent();
@@ -12,14 +12,14 @@ final class AuthStarted extends AuthEvent {
   List<Object?> get props => [];
 }
 
-/// Internal event emitted when the Supabase auth stream changes.
+/// Emitted internally when the auth stream emits a new [AuthUser] (or `null`).
 final class AuthUserChanged extends AuthEvent {
-  const AuthUserChanged(this.authState);
+  const AuthUserChanged(this.user);
 
-  final supabase.AuthState authState;
+  final AuthUser? user;
 
   @override
-  List<Object?> get props => [authState];
+  List<Object?> get props => [user];
 }
 
 final class AuthSignOutRequested extends AuthEvent {

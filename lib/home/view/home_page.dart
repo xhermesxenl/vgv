@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vgv/auth/auth.dart';
-import 'package:vgv/l10n/l10n.dart';
 import 'package:vgv/users/view/users_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,10 +8,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.counterAppBarTitle),
+        title: const Text('Home'),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
