@@ -1,6 +1,11 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(flutter analyze:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "supabase"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

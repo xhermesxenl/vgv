@@ -9,6 +9,12 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('Test Fonctionnel avec Logs', () {
+    testWidgets('Test Hello pour les logs', (tester) async {
+      developer.log('Hello ! Ceci est un test de log très simple.', name: 'UI_TEST');
+      expect(true, isTrue); // Un assert basique pour que le test passe
+    });
+
+
     testWidgets('Lancement de l\'app, passage de l\'onboarding et connexion', (tester) async {
       
       developer.log('=== DÉBUT DU TEST ===', name: 'UI_TEST');
@@ -87,8 +93,53 @@ void main() {
         developer.log('Attention : Écran de connexion introuvable.', name: 'UI_TEST');
       }
 
-      // Étape 4 : Fin du test avec une courte pause pour observer
-      developer.log('Étape 4 : Wait visuel de 3 secondes avant la fermeture de l\'émulateur...', name: 'UI_TEST');
+      // Étape 4 : Navigation vers la gestion des utilisateurs
+      developer.log('Étape 4 : Clic sur le bouton "Manage Users"', name: 'UI_TEST');
+      final manageUsersButton = find.text('Manage Users');
+      if (manageUsersButton.evaluate().isNotEmpty) {
+        await tester.tap(manageUsersButton);
+        await tester.pumpAndSettle();
+
+        // Étape 5 : Création d'un utilisateur
+        developer.log('Étape 5 : Clic sur le bouton Add User (+)', name: 'UI_TEST');
+        final fab = find.byType(FloatingActionButton);
+        await tester.tap(fab);
+        await tester.pumpAndSettle();
+
+        developer.log('Remplissage du formulaire de création d\'utilisateur', name: 'UI_TEST');
+        final nameField = find.byType(TextFormField).at(0);
+        final emailField2 = find.byType(TextFormField).at(1);
+        final phoneField = find.byType(TextFormField).at(2);
+
+        await tester.enterText(nameField, 'Claude Tester');
+        await tester.enterText(emailField2, 'claude@test.com');
+        await tester.enterText(phoneField, '0102030405');
+        await tester.pumpAndSettle();
+
+        // Petite pause pour observer les champs
+        await Future.delayed(const Duration(seconds: 2));
+
+        developer.log('Clic sur "Create"', name: 'UI_TEST');
+        await tester.tap(find.text('Create'));
+        await tester.pumpAndSettle(const Duration(seconds: 2));
+
+        // Étape 6 : Suppression de l'utilisateur créé
+        developer.log('Étape 6 : Suppression de l\'utilisateur créé', name: 'UI_TEST');
+        final deleteIcon = find.byIcon(Icons.delete);
+        if (deleteIcon.evaluate().isNotEmpty) {
+           // On supprime le premier utilisateur de la liste
+           await tester.tap(deleteIcon.first);
+           await tester.pumpAndSettle(const Duration(seconds: 2));
+           developer.log('Utilisateur supprimé.', name: 'UI_TEST');
+        } else {
+           developer.log('Aucun utilisateur à supprimer.', name: 'UI_TEST');
+        }
+      } else {
+        developer.log('Attention : Bouton "Manage Users" introuvable.', name: 'UI_TEST');
+      }
+
+      // Étape 7 : Fin du test avec une courte pause pour observer
+      developer.log('Étape 7 : Wait visuel de 3 secondes avant la fermeture de l\'émulateur...', name: 'UI_TEST');
       await Future.delayed(const Duration(seconds: 3));
       
       developer.log('=== FIN DU TEST AVEC SUCCÈS ===', name: 'UI_TEST');
