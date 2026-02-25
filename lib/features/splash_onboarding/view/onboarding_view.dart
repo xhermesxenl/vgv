@@ -19,19 +19,22 @@ const _steps = [
   _OnboardingStep(
     icon: Icons.rocket_launch_outlined,
     title: 'Welcome',
-    description: 'This app is built on a solid VGV + Supabase foundation, '
+    description:
+        'This app is built on a solid VGV + Supabase foundation, '
         'ready to scale with your project.',
   ),
   _OnboardingStep(
     icon: Icons.lock_outline,
     title: 'Secure by default',
-    description: 'Authentication, encrypted storage and row-level security '
+    description:
+        'Authentication, encrypted storage and row-level security '
         'are set up out of the box.',
   ),
   _OnboardingStep(
     icon: Icons.tune_outlined,
     title: 'Fully customisable',
-    description: 'Replace any layer — theme, router, data sources — '
+    description:
+        'Replace any layer — theme, router, data sources — '
         'without touching the rest of the codebase.',
   ),
 ];
@@ -84,8 +87,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: _steps.length,
-                onPageChanged: (index) =>
-                    setState(() => _currentPage = index),
+                onPageChanged: (index) => setState(() => _currentPage = index),
                 itemBuilder: (context, index) =>
                     _OnboardingStepPage(step: _steps[index]),
               ),
@@ -135,8 +137,9 @@ class _OnboardingStepPage extends StatelessWidget {
           const SizedBox(height: 32),
           Text(
             step.title,
-            style: textTheme.headlineMedium
-                ?.copyWith(fontWeight: FontWeight.bold),
+            style: textTheme.headlineMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),

@@ -9,7 +9,7 @@ import 'package:vgv/features/permissions/domain/repository/permission_repository
 /// and plugin types ([Permission], [PermissionStatus]).
 class PermissionRepositoryImpl implements PermissionRepository {
   const PermissionRepositoryImpl({required PermissionClient client})
-      : _client = client;
+    : _client = client;
 
   final PermissionClient _client;
 
@@ -44,8 +44,7 @@ class PermissionRepositoryImpl implements PermissionRepository {
     return switch (status) {
       PermissionStatus.granted => AppPermissionStatus.granted,
       PermissionStatus.permanentlyDenied ||
-      PermissionStatus.restricted =>
-        AppPermissionStatus.permanentlyDenied,
+      PermissionStatus.restricted => AppPermissionStatus.permanentlyDenied,
       _ => AppPermissionStatus.denied,
     };
   }

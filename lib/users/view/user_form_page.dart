@@ -64,9 +64,9 @@ class _UserFormPageState extends State<UserFormPage> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: $e')));
       }
     } finally {
       if (mounted) setState(() => _saving = false);
@@ -76,9 +76,7 @@ class _UserFormPageState extends State<UserFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_isEditing ? 'Edit User' : 'New User'),
-      ),
+      appBar: AppBar(title: Text(_isEditing ? 'Edit User' : 'New User')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(

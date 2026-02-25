@@ -44,11 +44,13 @@ class LoginState extends Equatable {
       status: status ?? this.status,
       mode: mode ?? this.mode,
       // ignore: avoid_dynamic_calls
-      errorMessage:
-          errorMessage == _kOmit ? this.errorMessage : errorMessage as String?,
+      errorMessage: errorMessage == _kOmit
+          ? this.errorMessage
+          : errorMessage as String?,
       // ignore: avoid_dynamic_calls
-      emailError:
-          emailError == _kOmit ? this.emailError : emailError as String?,
+      emailError: emailError == _kOmit
+          ? this.emailError
+          : emailError as String?,
       // ignore: avoid_dynamic_calls
       passwordError: passwordError == _kOmit
           ? this.passwordError
@@ -59,13 +61,13 @@ class LoginState extends Equatable {
 
   @override
   List<Object?> get props => [
-        email,
-        password,
-        status,
-        mode,
-        errorMessage,
-        emailError,
-        passwordError,
-        hasAttemptedSubmit,
-      ];
+    email,
+    password,
+    status,
+    mode,
+    errorMessage,
+    emailError,
+    passwordError,
+    hasAttemptedSubmit,
+  ];
 }

@@ -28,11 +28,7 @@ class User extends Equatable {
   final DateTime? createdAt;
 
   Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'email': email,
-      'phone': phone,
-    };
+    return {'name': name, 'email': email, 'phone': phone};
   }
 
   User copyWith({

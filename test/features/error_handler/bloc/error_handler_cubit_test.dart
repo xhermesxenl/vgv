@@ -22,11 +22,7 @@ void main() {
         build: ErrorHandlerCubit.new,
         act: (cubit) => cubit.report(const NetworkFailure()),
         expect: () => [
-          const ErrorHandlerState(
-            error: AppError(
-              failure: NetworkFailure(),
-            ),
-          ),
+          const ErrorHandlerState(error: AppError(failure: NetworkFailure())),
         ],
       );
 
@@ -52,9 +48,7 @@ void main() {
         build: ErrorHandlerCubit.new,
         act: (cubit) => cubit.report(const AuthFailure()),
         expect: () => [
-          const ErrorHandlerState(
-            error: AppError(failure: AuthFailure()),
-          ),
+          const ErrorHandlerState(error: AppError(failure: AuthFailure())),
         ],
       );
 
@@ -63,9 +57,7 @@ void main() {
         build: ErrorHandlerCubit.new,
         act: (cubit) => cubit.report(const StorageFailure()),
         expect: () => [
-          const ErrorHandlerState(
-            error: AppError(failure: StorageFailure()),
-          ),
+          const ErrorHandlerState(error: AppError(failure: StorageFailure())),
         ],
       );
 
@@ -74,9 +66,7 @@ void main() {
         build: ErrorHandlerCubit.new,
         act: (cubit) => cubit.report(const UnknownFailure()),
         expect: () => [
-          const ErrorHandlerState(
-            error: AppError(failure: UnknownFailure()),
-          ),
+          const ErrorHandlerState(error: AppError(failure: UnknownFailure())),
         ],
       );
 
@@ -87,12 +77,8 @@ void main() {
           ..report(const NetworkFailure())
           ..report(const AuthFailure()),
         expect: () => [
-          const ErrorHandlerState(
-            error: AppError(failure: NetworkFailure()),
-          ),
-          const ErrorHandlerState(
-            error: AppError(failure: AuthFailure()),
-          ),
+          const ErrorHandlerState(error: AppError(failure: NetworkFailure())),
+          const ErrorHandlerState(error: AppError(failure: AuthFailure())),
         ],
       );
     });
@@ -105,9 +91,7 @@ void main() {
           ..report(const NetworkFailure())
           ..clear(),
         expect: () => [
-          const ErrorHandlerState(
-            error: AppError(failure: NetworkFailure()),
-          ),
+          const ErrorHandlerState(error: AppError(failure: NetworkFailure())),
           const ErrorHandlerState(),
         ],
       );
@@ -137,9 +121,7 @@ void main() {
     test('not equal when errors differ', () {
       expect(
         const ErrorHandlerState(error: AppError(failure: NetworkFailure())),
-        isNot(
-          const ErrorHandlerState(error: AppError(failure: AuthFailure())),
-        ),
+        isNot(const ErrorHandlerState(error: AppError(failure: AuthFailure()))),
       );
     });
 

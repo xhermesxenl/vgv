@@ -36,8 +36,9 @@ void main() {
 
     test('onConnectivityChanged delegates to client stream', () async {
       final controller = StreamController<bool>();
-      when(() => client.onConnectivityChanged)
-          .thenAnswer((_) => controller.stream);
+      when(
+        () => client.onConnectivityChanged,
+      ).thenAnswer((_) => controller.stream);
 
       final stream = repository.onConnectivityChanged;
       final future = expectLater(stream, emitsInOrder([true, false]));

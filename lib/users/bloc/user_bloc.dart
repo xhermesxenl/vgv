@@ -5,8 +5,8 @@ import 'package:vgv/users/repository/user_repository.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({required UserRepository userRepository})
-      : _userRepository = userRepository,
-        super(const UserInitial()) {
+    : _userRepository = userRepository,
+      super(const UserInitial()) {
     on<LoadUsers>(_onLoadUsers);
     on<AddUser>(_onAddUser);
     on<UpdateUser>(_onUpdateUser);

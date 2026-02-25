@@ -8,8 +8,8 @@ part 'connectivity_state.dart';
 
 class ConnectivityCubit extends Cubit<ConnectivityState> {
   ConnectivityCubit({required ConnectivityRepository repository})
-      : _repository = repository,
-        super(const ConnectivityInitial()) {
+    : _repository = repository,
+      super(const ConnectivityInitial()) {
     _subscription = _repository.onConnectivityChanged.listen(
       (isConnected) => emit(
         isConnected ? const ConnectivityOnline() : const ConnectivityOffline(),

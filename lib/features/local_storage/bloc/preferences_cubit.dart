@@ -12,8 +12,8 @@ const _kLocaleKey = 'locale';
 /// Cubit responsible for loading and persisting user preferences.
 class PreferencesCubit extends Cubit<PreferencesState> {
   PreferencesCubit({required PreferencesRepository preferencesRepository})
-      : _repository = preferencesRepository,
-        super(const PreferencesState());
+    : _repository = preferencesRepository,
+      super(const PreferencesState());
 
   final PreferencesRepository _repository;
 
@@ -33,10 +33,7 @@ class PreferencesCubit extends Cubit<PreferencesState> {
 
   /// Persists [themeMode] and emits the updated state.
   Future<void> setThemeMode(ThemeMode themeMode) async {
-    await _repository.setInt(
-      key: _kThemeModeKey,
-      value: themeMode.index,
-    );
+    await _repository.setInt(key: _kThemeModeKey, value: themeMode.index);
     emit(state.copyWith(themeMode: themeMode));
   }
 

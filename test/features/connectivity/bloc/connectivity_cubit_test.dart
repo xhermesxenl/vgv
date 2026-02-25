@@ -16,8 +16,9 @@ void main() {
   setUp(() {
     repository = _MockConnectivityRepository();
     controller = StreamController<bool>.broadcast();
-    when(() => repository.onConnectivityChanged)
-        .thenAnswer((_) => controller.stream);
+    when(
+      () => repository.onConnectivityChanged,
+    ).thenAnswer((_) => controller.stream);
   });
 
   tearDown(() async {

@@ -17,7 +17,7 @@ export 'package:supabase_auth_client/supabase_auth_client.dart' show AuthUser;
 /// (e.g. [signInWithGoogle]) so they never reference Supabase types directly.
 class AuthRepository {
   AuthRepository({AuthClient? authClient})
-      : _client = authClient ?? AuthClient();
+    : _client = authClient ?? AuthClient();
 
   final AuthClient _client;
 

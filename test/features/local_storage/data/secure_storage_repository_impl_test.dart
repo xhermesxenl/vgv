@@ -28,8 +28,7 @@ void main() {
     });
 
     test('write delegates to client', () async {
-      when(() => client.write(key: key, value: value))
-          .thenAnswer((_) async {});
+      when(() => client.write(key: key, value: value)).thenAnswer((_) async {});
 
       await repository.write(key: key, value: value);
 

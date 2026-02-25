@@ -46,7 +46,7 @@ class PermissionBuilder extends StatelessWidget {
 
   /// Built when the permission is [AppPermissionStatus.permanentlyDenied].
   final Widget Function(BuildContext context, PermissionCubit cubit)
-      permanentlyDenied;
+  permanentlyDenied;
 
   /// Built while the status is [AppPermissionStatus.unknown].
   ///
@@ -63,8 +63,10 @@ class PermissionBuilder extends StatelessWidget {
         return switch (status) {
           AppPermissionStatus.granted => granted(context),
           AppPermissionStatus.denied => denied(context, cubit),
-          AppPermissionStatus.permanentlyDenied =>
-            permanentlyDenied(context, cubit),
+          AppPermissionStatus.permanentlyDenied => permanentlyDenied(
+            context,
+            cubit,
+          ),
           AppPermissionStatus.unknown =>
             unknown?.call(context) ?? const SizedBox.shrink(),
         };

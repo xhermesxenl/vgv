@@ -5,14 +5,12 @@ import 'package:vgv/core/errors/failures.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit({required AuthRepository authRepository})
-      : _authRepository = authRepository,
-        super(const LoginState());
+    : _authRepository = authRepository,
+      super(const LoginState());
 
   final AuthRepository _authRepository;
 
-  static final _emailRegex = RegExp(
-    r'^[\w.+\-]+@[\w\-]+\.[a-zA-Z]{2,}$',
-  );
+  static final _emailRegex = RegExp(r'^[\w.+\-]+@[\w\-]+\.[a-zA-Z]{2,}$');
 
   static String? _validateEmail(String email) {
     if (email.isEmpty) return 'Email is required';
@@ -20,10 +18,7 @@ class LoginCubit extends Cubit<LoginState> {
     return null;
   }
 
-  static String? _validatePassword(
-    String password, {
-    required bool isSignUp,
-  }) {
+  static String? _validatePassword(String password, {required bool isSignUp}) {
     if (password.isEmpty) return 'Password is required';
     if (isSignUp && password.length < 6) {
       return 'Password must be at least 6 characters';
@@ -57,8 +52,9 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   void toggleMode() {
-    final newMode =
-        state.mode == AuthMode.signIn ? AuthMode.signUp : AuthMode.signIn;
+    final newMode = state.mode == AuthMode.signIn
+        ? AuthMode.signUp
+        : AuthMode.signIn;
     emit(
       state.copyWith(
         mode: newMode,
@@ -111,10 +107,7 @@ class LoginCubit extends Cubit<LoginState> {
       emit(state.copyWith(status: LoginStatus.success));
     } on AuthFailure catch (e) {
       emit(
-        state.copyWith(
-          status: LoginStatus.failure,
-          errorMessage: e.message,
-        ),
+        state.copyWith(status: LoginStatus.failure, errorMessage: e.message),
       );
     } catch (_) {
       emit(
@@ -141,10 +134,7 @@ class LoginCubit extends Cubit<LoginState> {
       emit(state.copyWith(status: LoginStatus.initial));
     } on AuthFailure catch (e) {
       emit(
-        state.copyWith(
-          status: LoginStatus.failure,
-          errorMessage: e.message,
-        ),
+        state.copyWith(status: LoginStatus.failure, errorMessage: e.message),
       );
     } catch (_) {
       emit(

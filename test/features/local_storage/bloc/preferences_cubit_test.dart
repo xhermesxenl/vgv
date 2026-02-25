@@ -28,10 +28,12 @@ void main() {
       blocTest<PreferencesCubit, PreferencesState>(
         'emits system themeMode and null locale when nothing stored',
         setUp: () {
-          when(() => repository.getInt(key: any(named: 'key')))
-              .thenReturn(null);
-          when(() => repository.getString(key: any(named: 'key')))
-              .thenReturn(null);
+          when(
+            () => repository.getInt(key: any(named: 'key')),
+          ).thenReturn(null);
+          when(
+            () => repository.getString(key: any(named: 'key')),
+          ).thenReturn(null);
         },
         build: () => PreferencesCubit(preferencesRepository: repository),
         act: (cubit) => cubit.loadPreferences(),
@@ -41,10 +43,12 @@ void main() {
       blocTest<PreferencesCubit, PreferencesState>(
         'emits stored themeMode and locale',
         setUp: () {
-          when(() => repository.getInt(key: any(named: 'key')))
-              .thenReturn(ThemeMode.dark.index);
-          when(() => repository.getString(key: any(named: 'key')))
-              .thenReturn('fr');
+          when(
+            () => repository.getInt(key: any(named: 'key')),
+          ).thenReturn(ThemeMode.dark.index);
+          when(
+            () => repository.getString(key: any(named: 'key')),
+          ).thenReturn('fr');
         },
         build: () => PreferencesCubit(preferencesRepository: repository),
         act: (cubit) => cubit.loadPreferences(),
@@ -109,17 +113,16 @@ void main() {
       blocTest<PreferencesCubit, PreferencesState>(
         'removes locale and emits null locale when called with null',
         setUp: () {
-          when(() => repository.remove(key: any(named: 'key')))
-              .thenAnswer((_) async {});
+          when(
+            () => repository.remove(key: any(named: 'key')),
+          ).thenAnswer((_) async {});
         },
         seed: () => const PreferencesState(locale: Locale('fr')),
         build: () => PreferencesCubit(preferencesRepository: repository),
         act: (cubit) => cubit.setLocale(null),
         expect: () => [const PreferencesState()],
         verify: (_) {
-          verify(
-            () => repository.remove(key: any(named: 'key')),
-          ).called(1);
+          verify(() => repository.remove(key: any(named: 'key'))).called(1);
         },
       );
     });

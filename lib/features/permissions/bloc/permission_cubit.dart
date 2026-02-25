@@ -14,8 +14,8 @@ part 'permission_state.dart';
 /// 3. Call [openSettings] when a permission is permanently denied.
 class PermissionCubit extends Cubit<PermissionState> {
   PermissionCubit({required PermissionRepository repository})
-      : _repository = repository,
-        super(const PermissionState());
+    : _repository = repository,
+      super(const PermissionState());
 
   final PermissionRepository _repository;
 
@@ -32,17 +32,14 @@ class PermissionCubit extends Cubit<PermissionState> {
   /// Requests a single [permission] from the user and updates state.
   Future<void> request(AppPermission permission) async {
     final status = await _repository.request(permission);
-    emit(
-      state.copyWith(
-        statuses: {...state.statuses, permission: status},
-      ),
-    );
+    emit(state.copyWith(statuses: {...state.statuses, permission: status}));
   }
 
   /// Requests each permission in [permissions] sequentially and updates state.
   Future<void> requestAll(List<AppPermission> permissions) async {
-    final statuses =
-        Map<AppPermission, AppPermissionStatus>.from(state.statuses);
+    final statuses = Map<AppPermission, AppPermissionStatus>.from(
+      state.statuses,
+    );
     for (final permission in permissions) {
       statuses[permission] = await _repository.request(permission);
     }
