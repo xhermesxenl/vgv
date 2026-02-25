@@ -1,4 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Camera -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!-- Photo library: READ_MEDIA_IMAGES on Android 13+, READ_EXTERNAL_STORAGE below -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"/>
+    <!-- Push notifications (Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
         android:label="${appName}"
         android:name="${applicationName}"

@@ -8,35 +8,56 @@ classDiagram
   class AuthBloc
   class AuthPage
   class AuthRepository
-  class CounterCubit
-  class CounterPage
+  class ConnectivityCubit
+  class ConnectivityRepository
+  class ErrorHandlerCubit
   class HomePage
   class LoginCubit
-  class MyApp
-  class MyHomePage
+  class OnboardingCubit
+  class OnboardingPage
+  class OnboardingRepository
+  class PermissionCubit
+  class PermissionRepository
+  class PreferencesCubit
+  class PreferencesRepository
+  class SecureStorageRepository
   class UserBloc
   class UserFormPage
   class UserRepository
   class UsersPage
+  class _OnboardingStepPage
+  class _SplashPage
   App --> AuthBloc
-  App --> AuthPage
   App --> AuthRepository
-  App --> HomePage
+  App --> ConnectivityCubit
+  App --> ConnectivityRepository
+  App --> ErrorHandlerCubit
+  App --> OnboardingCubit
+  App --> OnboardingRepository
+  App --> PreferencesCubit
+  App --> PreferencesRepository
+  App --> SecureStorageRepository
   App --> UserRepository
   AuthBloc --> AuthRepository
   AuthPage --> AuthRepository
   AuthPage --> LoginCubit
-  CounterPage --> CounterCubit
+  ConnectivityCubit --> ConnectivityRepository
   HomePage --> AuthBloc
   HomePage --> UsersPage
   LoginCubit --> AuthRepository
-  MyApp --> App
-  MyApp --> MyHomePage
-  MyHomePage --> App
-  MyHomePage --> MyApp
+  OnboardingCubit --> OnboardingRepository
+  OnboardingPage --> App
+  PermissionCubit --> PermissionRepository
+  PreferencesCubit --> PreferencesRepository
   UserBloc --> UserRepository
   UserFormPage --> UserRepository
   UsersPage --> UserBloc
   UsersPage --> UserFormPage
   UsersPage --> UserRepository
+  _OnboardingStepPage --> OnboardingCubit
+  _SplashPage --> AuthBloc
+  _SplashPage --> AuthPage
+  _SplashPage --> HomePage
+  _SplashPage --> OnboardingCubit
+  _SplashPage --> OnboardingPage
 ```
