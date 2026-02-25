@@ -26,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
     await emit.onEach(
       _authRepository.authStateChanges,
-      onData: (authState) => add(AuthUserChanged(authState)),
+      onData: (user) => add(AuthUserChanged(user)),
     );
   }
 
@@ -34,9 +34,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthUserChanged event,
     Emitter<AuthState> emit,
   ) {
-    final session = event.authState.session;
-    if (session != null) {
-      emit(AuthAuthenticated(session.user));
+    final user = event.user;
+    if (user != null) {
+      emit(AuthAuthenticated(user));
     } else {
       emit(const AuthUnauthenticated());
     }
