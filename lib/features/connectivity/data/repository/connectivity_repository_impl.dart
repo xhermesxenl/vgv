@@ -3,7 +3,7 @@ import 'package:vgv/features/connectivity/domain/repository/connectivity_reposit
 
 class ConnectivityRepositoryImpl implements ConnectivityRepository {
   const ConnectivityRepositoryImpl({required ConnectivityClient client})
-      : _client = client;
+    : _client = client;
 
   final ConnectivityClient _client;
 

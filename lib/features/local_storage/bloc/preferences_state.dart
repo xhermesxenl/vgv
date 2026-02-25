@@ -1,10 +1,7 @@
 part of 'preferences_cubit.dart';
 
 class PreferencesState extends Equatable {
-  const PreferencesState({
-    this.themeMode = ThemeMode.system,
-    this.locale,
-  });
+  const PreferencesState({this.themeMode = ThemeMode.system, this.locale});
 
   final ThemeMode themeMode;
   final Locale? locale;

@@ -27,8 +27,9 @@ void main() {
     });
 
     test('setString delegates to client', () async {
-      when(() => client.setString(key: key, value: 'hello'))
-          .thenAnswer((_) async {});
+      when(
+        () => client.setString(key: key, value: 'hello'),
+      ).thenAnswer((_) async {});
 
       await repository.setString(key: key, value: 'hello');
 
@@ -45,8 +46,9 @@ void main() {
     });
 
     test('setBool delegates to client', () async {
-      when(() => client.setBool(key: key, value: true))
-          .thenAnswer((_) async {});
+      when(
+        () => client.setBool(key: key, value: true),
+      ).thenAnswer((_) async {});
 
       await repository.setBool(key: key, value: true);
 
@@ -63,8 +65,7 @@ void main() {
     });
 
     test('setInt delegates to client', () async {
-      when(() => client.setInt(key: key, value: 42))
-          .thenAnswer((_) async {});
+      when(() => client.setInt(key: key, value: 42)).thenAnswer((_) async {});
 
       await repository.setInt(key: key, value: 42);
 

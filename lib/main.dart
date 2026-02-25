@@ -9,8 +9,7 @@ void main() {
       required SecureStorageClient secureStorageClient,
       required PreferencesClient preferencesClient,
       required ConnectivityClient connectivityClient,
-    }) =>
-        App(
+    }) => App(
       secureStorageClient: secureStorageClient,
       preferencesClient: preferencesClient,
       connectivityClient: connectivityClient,

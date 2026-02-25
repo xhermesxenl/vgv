@@ -29,10 +29,10 @@ class App extends StatefulWidget {
     required ConnectivityClient connectivityClient,
     super.key,
     UserRepository? userRepository,
-  })  : _secureStorageClient = secureStorageClient,
-        _preferencesClient = preferencesClient,
-        _connectivityClient = connectivityClient,
-        _userRepository = userRepository;
+  }) : _secureStorageClient = secureStorageClient,
+       _preferencesClient = preferencesClient,
+       _connectivityClient = connectivityClient,
+       _userRepository = userRepository;
 
   final SecureStorageClient _secureStorageClient;
   final PreferencesClient _preferencesClient;
@@ -81,14 +81,12 @@ class _AppState extends State<App> {
           create: (_) => widget._userRepository ?? UserRepository(),
         ),
         RepositoryProvider<SecureStorageRepository>(
-          create: (_) => SecureStorageRepositoryImpl(
-            client: widget._secureStorageClient,
-          ),
+          create: (_) =>
+              SecureStorageRepositoryImpl(client: widget._secureStorageClient),
         ),
         RepositoryProvider<PreferencesRepository>(
-          create: (_) => PreferencesRepositoryImpl(
-            client: widget._preferencesClient,
-          ),
+          create: (_) =>
+              PreferencesRepositoryImpl(client: widget._preferencesClient),
         ),
         RepositoryProvider<OnboardingRepository>(
           create: (_) => OnboardingRepositoryImpl(
@@ -98,9 +96,8 @@ class _AppState extends State<App> {
           ),
         ),
         RepositoryProvider<ConnectivityRepository>(
-          create: (_) => ConnectivityRepositoryImpl(
-            client: widget._connectivityClient,
-          ),
+          create: (_) =>
+              ConnectivityRepositoryImpl(client: widget._connectivityClient),
         ),
       ],
       child: MultiBlocProvider(
@@ -108,13 +105,10 @@ class _AppState extends State<App> {
           BlocProvider<AuthBloc>.value(value: _authBloc),
           BlocProvider<PreferencesCubit>(
             create: (context) => PreferencesCubit(
-              preferencesRepository:
-                  context.read<PreferencesRepository>(),
+              preferencesRepository: context.read<PreferencesRepository>(),
             )..loadPreferences(),
           ),
-          BlocProvider<ErrorHandlerCubit>(
-            create: (_) => ErrorHandlerCubit(),
-          ),
+          BlocProvider<ErrorHandlerCubit>(create: (_) => ErrorHandlerCubit()),
           BlocProvider<OnboardingCubit>.value(value: _onboardingCubit),
           BlocProvider<ConnectivityCubit>(
             create: (context) => ConnectivityCubit(

@@ -28,9 +28,7 @@ class UsersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Users'),
-      ),
+      appBar: AppBar(title: const Text('Users')),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           if (state is UserLoading || state is UserInitial) {
@@ -63,9 +61,9 @@ class UsersView extends StatelessWidget {
 
   Future<void> _navigateToForm(BuildContext context) async {
     final bloc = context.read<UserBloc>();
-    final result = await Navigator.of(context).push<bool>(
-      MaterialPageRoute<bool>(builder: (_) => const UserFormPage()),
-    );
+    final result = await Navigator.of(
+      context,
+    ).push<bool>(MaterialPageRoute<bool>(builder: (_) => const UserFormPage()));
     if (result == true) {
       bloc.add(const LoadUsers());
     }
@@ -91,9 +89,7 @@ class _UserTile extends StatelessWidget {
       onTap: () async {
         final bloc = context.read<UserBloc>();
         final result = await Navigator.of(context).push<bool>(
-          MaterialPageRoute<bool>(
-            builder: (_) => UserFormPage(user: user),
-          ),
+          MaterialPageRoute<bool>(builder: (_) => UserFormPage(user: user)),
         );
         if (result == true) {
           bloc.add(const LoadUsers());

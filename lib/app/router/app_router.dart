@@ -66,22 +66,13 @@ GoRouter createRouter(AuthBloc authBloc, OnboardingCubit onboardingCubit) {
       return AppRoutes.auth;
     },
     routes: [
-      GoRoute(
-        path: AppRoutes.splash,
-        builder: (_, __) => const _SplashPage(),
-      ),
+      GoRoute(path: AppRoutes.splash, builder: (_, __) => const _SplashPage()),
       GoRoute(
         path: AppRoutes.onboarding,
         builder: (_, __) => const OnboardingPage(),
       ),
-      GoRoute(
-        path: AppRoutes.auth,
-        builder: (_, __) => const AuthPage(),
-      ),
-      GoRoute(
-        path: AppRoutes.home,
-        builder: (_, __) => const HomePage(),
-      ),
+      GoRoute(path: AppRoutes.auth, builder: (_, __) => const AuthPage()),
+      GoRoute(path: AppRoutes.home, builder: (_, __) => const HomePage()),
     ],
   );
 }
@@ -91,9 +82,7 @@ class _SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
-    );
+    return const Scaffold(body: Center(child: CircularProgressIndicator()));
   }
 }
 

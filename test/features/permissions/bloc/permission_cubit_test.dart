@@ -85,12 +85,15 @@ void main() {
       blocTest<PermissionCubit, PermissionState>(
         'populates statusOf correctly for each permission',
         setUp: () {
-          when(() => repository.check(AppPermission.camera))
-              .thenAnswer((_) async => AppPermissionStatus.granted);
-          when(() => repository.check(AppPermission.photos))
-              .thenAnswer((_) async => AppPermissionStatus.denied);
-          when(() => repository.check(AppPermission.notifications))
-              .thenAnswer((_) async => AppPermissionStatus.permanentlyDenied);
+          when(
+            () => repository.check(AppPermission.camera),
+          ).thenAnswer((_) async => AppPermissionStatus.granted);
+          when(
+            () => repository.check(AppPermission.photos),
+          ).thenAnswer((_) async => AppPermissionStatus.denied);
+          when(
+            () => repository.check(AppPermission.notifications),
+          ).thenAnswer((_) async => AppPermissionStatus.permanentlyDenied);
         },
         build: () => PermissionCubit(repository: repository),
         act: (cubit) => cubit.checkAll(),
@@ -115,8 +118,9 @@ void main() {
       blocTest<PermissionCubit, PermissionState>(
         'emits granted status for requested permission',
         setUp: () {
-          when(() => repository.request(AppPermission.camera))
-              .thenAnswer((_) async => AppPermissionStatus.granted);
+          when(
+            () => repository.request(AppPermission.camera),
+          ).thenAnswer((_) async => AppPermissionStatus.granted);
         },
         build: () => PermissionCubit(repository: repository),
         act: (cubit) => cubit.request(AppPermission.camera),
@@ -132,8 +136,9 @@ void main() {
       blocTest<PermissionCubit, PermissionState>(
         'emits permanentlyDenied without affecting other permissions',
         setUp: () {
-          when(() => repository.request(AppPermission.notifications))
-              .thenAnswer((_) async => AppPermissionStatus.permanentlyDenied);
+          when(
+            () => repository.request(AppPermission.notifications),
+          ).thenAnswer((_) async => AppPermissionStatus.permanentlyDenied);
         },
         build: () => PermissionCubit(repository: repository),
         act: (cubit) => cubit.request(AppPermission.notifications),
@@ -154,16 +159,16 @@ void main() {
       blocTest<PermissionCubit, PermissionState>(
         'requests each permission and emits a single state with all results',
         setUp: () {
-          when(() => repository.request(AppPermission.camera))
-              .thenAnswer((_) async => AppPermissionStatus.granted);
-          when(() => repository.request(AppPermission.photos))
-              .thenAnswer((_) async => AppPermissionStatus.denied);
+          when(
+            () => repository.request(AppPermission.camera),
+          ).thenAnswer((_) async => AppPermissionStatus.granted);
+          when(
+            () => repository.request(AppPermission.photos),
+          ).thenAnswer((_) async => AppPermissionStatus.denied);
         },
         build: () => PermissionCubit(repository: repository),
-        act: (cubit) => cubit.requestAll([
-          AppPermission.camera,
-          AppPermission.photos,
-        ]),
+        act: (cubit) =>
+            cubit.requestAll([AppPermission.camera, AppPermission.photos]),
         verify: (cubit) {
           expect(
             cubit.state.statusOf(AppPermission.camera),

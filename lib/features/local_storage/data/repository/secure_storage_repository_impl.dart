@@ -4,7 +4,7 @@ import 'package:vgv/features/local_storage/domain/repository/secure_storage_repo
 /// [SecureStorageRepository] implementation backed by [SecureStorageClient].
 class SecureStorageRepositoryImpl implements SecureStorageRepository {
   const SecureStorageRepositoryImpl({required SecureStorageClient client})
-      : _client = client;
+    : _client = client;
 
   final SecureStorageClient _client;
 

@@ -4,8 +4,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:vgv/features/splash_onboarding/bloc/onboarding_cubit.dart';
 import 'package:vgv/features/splash_onboarding/domain/repository/onboarding_repository.dart';
 
-class _MockOnboardingRepository extends Mock
-    implements OnboardingRepository {}
+class _MockOnboardingRepository extends Mock implements OnboardingRepository {}
 
 void main() {
   late _MockOnboardingRepository repository;
@@ -61,8 +60,7 @@ void main() {
       blocTest<OnboardingCubit, OnboardingState>(
         'emits OnboardingComplete',
         setUp: () {
-          when(() => repository.markOnboardingSeen())
-              .thenAnswer((_) async {});
+          when(() => repository.markOnboardingSeen()).thenAnswer((_) async {});
         },
         build: () => OnboardingCubit(onboardingRepository: repository),
         act: (cubit) => cubit.completeOnboarding(),
@@ -72,8 +70,7 @@ void main() {
       blocTest<OnboardingCubit, OnboardingState>(
         'persists the flag before emitting',
         setUp: () {
-          when(() => repository.markOnboardingSeen())
-              .thenAnswer((_) async {});
+          when(() => repository.markOnboardingSeen()).thenAnswer((_) async {});
         },
         build: () => OnboardingCubit(onboardingRepository: repository),
         act: (cubit) => cubit.completeOnboarding(),
@@ -86,8 +83,7 @@ void main() {
         'emits OnboardingComplete even when already in OnboardingRequired',
         setUp: () {
           when(() => repository.hasSeenOnboarding()).thenReturn(false);
-          when(() => repository.markOnboardingSeen())
-              .thenAnswer((_) async {});
+          when(() => repository.markOnboardingSeen()).thenAnswer((_) async {});
         },
         seed: () => const OnboardingRequired(),
         build: () => OnboardingCubit(onboardingRepository: repository),
@@ -111,18 +107,9 @@ void main() {
     });
 
     test('distinct states are not equal', () {
-      expect(
-        const OnboardingInitial(),
-        isNot(const OnboardingRequired()),
-      );
-      expect(
-        const OnboardingRequired(),
-        isNot(const OnboardingComplete()),
-      );
-      expect(
-        const OnboardingInitial(),
-        isNot(const OnboardingComplete()),
-      );
+      expect(const OnboardingInitial(), isNot(const OnboardingRequired()));
+      expect(const OnboardingRequired(), isNot(const OnboardingComplete()));
+      expect(const OnboardingInitial(), isNot(const OnboardingComplete()));
     });
   });
 }

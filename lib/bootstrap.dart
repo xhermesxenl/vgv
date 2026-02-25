@@ -29,7 +29,8 @@ Future<void> bootstrap(
     required SecureStorageClient secureStorageClient,
     required PreferencesClient preferencesClient,
     required ConnectivityClient connectivityClient,
-  }) builder,
+  })
+  builder,
 ) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);

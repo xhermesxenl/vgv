@@ -4,7 +4,7 @@ import 'package:vgv/features/local_storage/domain/repository/preferences_reposit
 /// [PreferencesRepository] implementation backed by [PreferencesClient].
 class PreferencesRepositoryImpl implements PreferencesRepository {
   const PreferencesRepositoryImpl({required PreferencesClient client})
-      : _client = client;
+    : _client = client;
 
   final PreferencesClient _client;
 

@@ -3,7 +3,7 @@ import 'package:vgv/users/model/user.dart';
 
 class UserRepository {
   UserRepository({SupabaseClient? client})
-      : _client = client ?? Supabase.instance.client;
+    : _client = client ?? Supabase.instance.client;
 
   final SupabaseClient _client;
 
@@ -16,8 +16,11 @@ class UserRepository {
   }
 
   Future<User> addUser(User user) async {
-    final data =
-        await _client.from('users').insert(user.toJson()).select().single();
+    final data = await _client
+        .from('users')
+        .insert(user.toJson())
+        .select()
+        .single();
     return User.fromJson(data);
   }
 

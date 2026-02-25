@@ -24,11 +24,9 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const UsersPage(),
-              ),
-            );
+            Navigator.of(
+              context,
+            ).push(MaterialPageRoute<void>(builder: (_) => const UsersPage()));
           },
           child: const Text('Manage Users'),
         ),

@@ -24,10 +24,7 @@ final class NetworkFailure extends Failure {
 /// Failure returned by the Supabase server (RLS violation, not found,
 /// conflict, internal server error, etc.).
 final class ServerFailure extends Failure {
-  const ServerFailure({
-    required super.message,
-    this.statusCode,
-  });
+  const ServerFailure({required super.message, this.statusCode});
 
   /// HTTP status code returned by the server, if available.
   final int? statusCode;

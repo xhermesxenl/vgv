@@ -19,8 +19,9 @@ void main() {
   group('PermissionRepositoryImpl', () {
     group('check', () {
       test('maps camera to Permission.camera and granted status', () async {
-        when(() => client.check(Permission.camera))
-            .thenAnswer((_) async => PermissionStatus.granted);
+        when(
+          () => client.check(Permission.camera),
+        ).thenAnswer((_) async => PermissionStatus.granted);
 
         final result = await repository.check(AppPermission.camera);
 
@@ -29,8 +30,9 @@ void main() {
       });
 
       test('maps photos to Permission.photos', () async {
-        when(() => client.check(Permission.photos))
-            .thenAnswer((_) async => PermissionStatus.denied);
+        when(
+          () => client.check(Permission.photos),
+        ).thenAnswer((_) async => PermissionStatus.denied);
 
         final result = await repository.check(AppPermission.photos);
 
@@ -39,8 +41,9 @@ void main() {
       });
 
       test('maps notifications to Permission.notification', () async {
-        when(() => client.check(Permission.notification))
-            .thenAnswer((_) async => PermissionStatus.permanentlyDenied);
+        when(
+          () => client.check(Permission.notification),
+        ).thenAnswer((_) async => PermissionStatus.permanentlyDenied);
 
         final result = await repository.check(AppPermission.notifications);
 
@@ -48,8 +51,9 @@ void main() {
       });
 
       test('maps restricted status to permanentlyDenied', () async {
-        when(() => client.check(Permission.camera))
-            .thenAnswer((_) async => PermissionStatus.restricted);
+        when(
+          () => client.check(Permission.camera),
+        ).thenAnswer((_) async => PermissionStatus.restricted);
 
         final result = await repository.check(AppPermission.camera);
 
@@ -57,8 +61,9 @@ void main() {
       });
 
       test('maps unknown plugin status to denied', () async {
-        when(() => client.check(Permission.camera))
-            .thenAnswer((_) async => PermissionStatus.limited);
+        when(
+          () => client.check(Permission.camera),
+        ).thenAnswer((_) async => PermissionStatus.limited);
 
         final result = await repository.check(AppPermission.camera);
 
@@ -68,8 +73,9 @@ void main() {
 
     group('request', () {
       test('requests camera permission and returns granted', () async {
-        when(() => client.request(Permission.camera))
-            .thenAnswer((_) async => PermissionStatus.granted);
+        when(
+          () => client.request(Permission.camera),
+        ).thenAnswer((_) async => PermissionStatus.granted);
 
         final result = await repository.request(AppPermission.camera);
 
@@ -78,23 +84,27 @@ void main() {
       });
 
       test('requests photos permission and returns denied', () async {
-        when(() => client.request(Permission.photos))
-            .thenAnswer((_) async => PermissionStatus.denied);
+        when(
+          () => client.request(Permission.photos),
+        ).thenAnswer((_) async => PermissionStatus.denied);
 
         final result = await repository.request(AppPermission.photos);
 
         expect(result, AppPermissionStatus.denied);
       });
 
-      test('requests notification permission and returns permanentlyDenied',
-          () async {
-        when(() => client.request(Permission.notification))
-            .thenAnswer((_) async => PermissionStatus.permanentlyDenied);
+      test(
+        'requests notification permission and returns permanentlyDenied',
+        () async {
+          when(
+            () => client.request(Permission.notification),
+          ).thenAnswer((_) async => PermissionStatus.permanentlyDenied);
 
-        final result = await repository.request(AppPermission.notifications);
+          final result = await repository.request(AppPermission.notifications);
 
-        expect(result, AppPermissionStatus.permanentlyDenied);
-      });
+          expect(result, AppPermissionStatus.permanentlyDenied);
+        },
+      );
     });
 
     group('openSettings', () {

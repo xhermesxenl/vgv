@@ -85,10 +85,7 @@ void main() {
     group('StorageFailure', () {
       test('uses default message', () {
         const failure = StorageFailure();
-        expect(
-          failure.message,
-          'A storage error occurred. Please try again.',
-        );
+        expect(failure.message, 'A storage error occurred. Please try again.');
       });
 
       test('accepts custom message', () {
@@ -121,23 +118,27 @@ void main() {
     });
 
     group('cross-type inequality', () {
-      test('NetworkFailure and AuthFailure with same message are not equal',
-          () {
-        const message = 'error';
-        expect(
-          const NetworkFailure(message: message),
-          isNot(const AuthFailure(message: message)),
-        );
-      });
+      test(
+        'NetworkFailure and AuthFailure with same message are not equal',
+        () {
+          const message = 'error';
+          expect(
+            const NetworkFailure(message: message),
+            isNot(const AuthFailure(message: message)),
+          );
+        },
+      );
 
-      test('StorageFailure and UnknownFailure with same message are not equal',
-          () {
-        const message = 'error';
-        expect(
-          const StorageFailure(message: message),
-          isNot(const UnknownFailure(message: message)),
-        );
-      });
+      test(
+        'StorageFailure and UnknownFailure with same message are not equal',
+        () {
+          const message = 'error';
+          expect(
+            const StorageFailure(message: message),
+            isNot(const UnknownFailure(message: message)),
+          );
+        },
+      );
     });
   });
 }

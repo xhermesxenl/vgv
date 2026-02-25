@@ -11,9 +11,7 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LoginCubit>(
-      create: (ctx) => LoginCubit(
-        authRepository: ctx.read<AuthRepository>(),
-      ),
+      create: (ctx) => LoginCubit(authRepository: ctx.read<AuthRepository>()),
       child: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state.status == LoginStatus.failure &&
@@ -28,11 +26,7 @@ class AuthPage extends StatelessWidget {
               );
           }
         },
-        child: const Scaffold(
-          body: SafeArea(
-            child: AuthForm(),
-          ),
-        ),
+        child: const Scaffold(body: SafeArea(child: AuthForm())),
       ),
     );
   }

@@ -5,8 +5,8 @@ import 'package:vgv/auth/repository/auth_repository.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required AuthRepository authRepository})
-      : _authRepository = authRepository,
-        super(const AuthInitial()) {
+    : _authRepository = authRepository,
+      super(const AuthInitial()) {
     on<AuthStarted>(_onAuthStarted);
     on<AuthUserChanged>(_onAuthUserChanged);
     on<AuthSignOutRequested>(_onAuthSignOutRequested);
@@ -30,10 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  void _onAuthUserChanged(
-    AuthUserChanged event,
-    Emitter<AuthState> emit,
-  ) {
+  void _onAuthUserChanged(AuthUserChanged event, Emitter<AuthState> emit) {
     final user = event.user;
     if (user != null) {
       emit(AuthAuthenticated(user));

@@ -32,20 +32,22 @@ void main() {
     mockRepo = MockUserRepository();
   });
 
-  patrolWidgetTest('navigates from HomePage to UsersPage and shows empty state',
-      ($) async {
-    when(() => mockRepo.getUsers()).thenAnswer((_) async => []);
+  patrolWidgetTest(
+    'navigates from HomePage to UsersPage and shows empty state',
+    ($) async {
+      when(() => mockRepo.getUsers()).thenAnswer((_) async => []);
 
-    await $.pumpApp(home: const HomePage(), userRepository: mockRepo);
+      await $.pumpApp(home: const HomePage(), userRepository: mockRepo);
 
-    // Tap the "Manage Users" button
-    await $('Manage Users').tap();
-    await $.pumpAndSettle();
+      // Tap the "Manage Users" button
+      await $('Manage Users').tap();
+      await $.pumpAndSettle();
 
-    // Verify we're on UsersPage with empty state
-    expect($('Users'), findsOneWidget);
-    expect($('No users yet.'), findsOneWidget);
-  });
+      // Verify we're on UsersPage with empty state
+      expect($('Users'), findsOneWidget);
+      expect($('No users yet.'), findsOneWidget);
+    },
+  );
 
   patrolWidgetTest('creates a new user via form', ($) async {
     when(() => mockRepo.getUsers()).thenAnswer((_) async => []);
@@ -149,8 +151,9 @@ void main() {
     expect($('No users yet.'), findsOneWidget);
   });
 
-  patrolWidgetTest('shows validation errors on empty form submission',
-      ($) async {
+  patrolWidgetTest('shows validation errors on empty form submission', (
+    $,
+  ) async {
     when(() => mockRepo.getUsers()).thenAnswer((_) async => []);
 
     await $.pumpApp(home: const HomePage(), userRepository: mockRepo);
@@ -185,13 +188,7 @@ void main() {
     await $.pumpAndSettle();
 
     // Verify error message is displayed
-    expect(
-      find.textContaining('Error'),
-      findsOneWidget,
-    );
-    expect(
-      find.textContaining('Network error'),
-      findsOneWidget,
-    );
+    expect(find.textContaining('Error'), findsOneWidget);
+    expect(find.textContaining('Network error'), findsOneWidget);
   });
 }
