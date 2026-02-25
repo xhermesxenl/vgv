@@ -64,7 +64,7 @@ class UsersView extends StatelessWidget {
     final result = await Navigator.of(
       context,
     ).push<bool>(MaterialPageRoute<bool>(builder: (_) => const UserFormPage()));
-    if (result == true) {
+    if (result ?? false) {
       bloc.add(const LoadUsers());
     }
   }
@@ -91,7 +91,7 @@ class _UserTile extends StatelessWidget {
         final result = await Navigator.of(context).push<bool>(
           MaterialPageRoute<bool>(builder: (_) => UserFormPage(user: user)),
         );
-        if (result == true) {
+        if (result ?? false) {
           bloc.add(const LoadUsers());
         }
       },

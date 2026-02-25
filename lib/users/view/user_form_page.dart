@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vgv/users/model/user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vgv/users/model/user.dart';
 import 'package:vgv/users/repository/user_repository.dart';
 
 class UserFormPage extends StatefulWidget {
