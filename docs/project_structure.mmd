@@ -1,0 +1,51 @@
+graph TD
+    subgraph EntryPoint [Entry Point]
+        Main[main_development.dart]
+    end
+
+    subgraph BootstrapLayer [Bootstrap Layer]
+        Bootstrap[bootstrap.dart]
+        SupabaseInit(Supabase.initialize)
+        Bootstrap --> SupabaseInit
+        StorageClient(SecureStorageClient)
+        Bootstrap --> StorageClient
+        PrefsClient(PreferencesClient)
+        Bootstrap --> PrefsClient
+        ConnClient(ConnectivityClient)
+        Bootstrap --> ConnClient
+    end
+
+    Main --> Bootstrap
+    subgraph AppLayer [App Widget Layer]
+        AppWidget[App Widget]
+        AuthRepository[AuthRepository]
+        ConnectivityRepository[ConnectivityRepository]
+        OnboardingRepository[OnboardingRepository]
+        PreferencesRepository[PreferencesRepository]
+        SecureStorageRepository[SecureStorageRepository]
+        UserRepository[UserRepository]
+        AuthBloc[AuthBloc]
+        ConnectivityCubit[ConnectivityCubit]
+        ErrorHandlerCubit[ErrorHandlerCubit]
+        OnboardingCubit[OnboardingCubit]
+        PreferencesCubit[PreferencesCubit]
+    end
+
+    Bootstrap --> AppWidget
+    AppWidget -->|Provides| Repositories((Repositories))
+    Repositories --> AuthRepository
+    Repositories --> ConnectivityRepository
+    Repositories --> OnboardingRepository
+    Repositories --> PreferencesRepository
+    Repositories --> SecureStorageRepository
+    Repositories --> UserRepository
+    AppWidget -->|Provides| Blocs((Blocs))
+    Blocs --> AuthBloc
+    AuthBloc -.-> AuthRepository
+    Blocs --> ConnectivityCubit
+    ConnectivityCubit -.-> ConnectivityRepository
+    Blocs --> ErrorHandlerCubit
+    Blocs --> OnboardingCubit
+    OnboardingCubit -.-> OnboardingRepository
+    Blocs --> PreferencesCubit
+    PreferencesCubit -.-> PreferencesRepository
